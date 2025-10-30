@@ -1,0 +1,63 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+body{
+    background-color: #8e5abe;
+}
+
+.main-container{
+    width: 80vw;
+    margin: 10% auto;
+    background-color: #9370b4;
+    border: 2px solid white;
+    border-radius: 20px;
+    padding: 50px;
+}
+
+#cost-heading{
+    color: white;
+    font-size: 26px;
+    font-weight: normal;
+    margin: 20px;
+}
+
+#cards-container{
+    display: flex;
+    gap: 20px 40px;
+}
+
+.card{
+    height: 300px;
+    width: 200px;
+    position: relative;
+    background-color: #fff;
+    border: 2px solid #acacac;
+    border-radius: 10px;
+}
+
+.details{
+    position: absolute;
+    bottom: 0px;
+    margin: 10px;
+}
+
+.prod-name{
+    font-size: 18px;
+}
+
+.cost-section{
+    display: flex;
+    font-size: 12px;
+    gap: 5px;
+}
+
+
+.prod-category{
+    font-size: 12px;
+}
+
+.prod-price{
+    text-decoration: line-through;
+}
