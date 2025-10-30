@@ -7,15 +7,13 @@ function Product(name,price,category){
     this.category = category;
 }
 
-main();
+(function(){
+    var product1 = new Product('A tail of 2 cities','300','Books');
+    var product2 = new Product('The Little Prince','450','Books');
+    var product3 = new Product('The Alchemist ','300','Books');
+    var product4 = new Product('The Very Hungry Caterpillar','500','Books');
 
-function main(){
-    product1 = new Product('A tail of 2 cities','300','Books');
-    product2 = new Product('A tail of 2 cities','300','Books');
-    product3 = new Product('A tail of 2 cities','300','Books');
-    product4 = new Product('A tail of 2 cities','300','Books');
-
-    product1.__proto__.getDiscountedPrice=function(dis){ return this.price -(this.price*dis)/100};
+    Product.prototype.getDiscountedPrice=function(dis){ return this.price -(this.price*dis)/100};
 
     products = [product1,product2,product3,product4];
 
@@ -29,13 +27,15 @@ function main(){
             const card = cards[i];
             card.addEventListener('mouseenter',()=>{
                 card.style.backgroundColor='#adadad';
+                card.style.scale='1.1';
             })
             card.addEventListener('mouseleave',()=>{
                 card.style.backgroundColor='';
+                card.style.scale='';
             })
         }
     })();
-}
+})();
 
 
 function DisplayCards(products){
@@ -89,19 +89,17 @@ function DisplayCards(products){
 
 function costDisc(products){
     var ele = document.getElementById('cost-heading');
-    var maxCost=0;
-    for(var i=0; i<products.length; i++){
-        var product=products[i];
-        maxCost=maxFun.call(product,maxCost);
-    }
-    ele.innerText=`Price of costliest product is ${maxCost}`;
+    ele.innerText=`Price of costliest product is ${maxFun.call(products)}`;
 }
 
 
-function maxFun(maxCost){
-    if(maxCost==undefined || maxCost==null || this.price>maxCost){
-        return this.getDiscountedPrice(discount);
-    }
-    return maxCost;
+function maxFun(){
+    var max=0;
+    this.forEach(element => {
+        if(max==0 || element.getDiscountedPrice(discount)>max){
+            max=element.getDiscountedPrice(discount);
+        }
+    });
+    return max;
 }
 
